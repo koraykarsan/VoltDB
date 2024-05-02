@@ -1,0 +1,48 @@
+Last login: Thu May  2 14:09:48 on ttys000
+koraykarsan@Koray-MBP-2 ~ % docker exec -it node1 bash
+root@278ad89a981b:/opt/voltdb# sqlcmd --servers=localhost --port=21212
+SQL Command :: localhost:21212
+1> create table mth3902 (
+  2> id                   bigint not null,
+  3> start_date_epoch     bigint,
+  4> create_user          varchar(32),
+  5> constraint mth3902_pk primary key(id)
+  6> );
+Command succeeded.
+7> partition table mth3902 on column id;
+Command succeeded.
+8> insert into mth3902 (  id, start_date_epoch, create_user ) values ( 1, 1698295044, 'MENNAN');
+(Returned 1 rows in 0.09s)
+9> insert into mth3902 (  id, start_date_epoch, create_user ) values ( 2, 1698295088, 'ERKUT');
+(Returned 1 rows in 0.05s)
+10> select * from mth3902 limit 1;
+ID  START_DATE_EPOCH  CREATE_USER 
+--- ----------------- ------------
+  1        1698295044 MENNAN      
+
+(Returned 1 rows in 0.07s)
+11> create procedure proc_select_mth3902_by_id 
+  12> partition on table mth3902 column id
+  13> as
+  14> begin
+  15> select start_date_epoch, create_user from mth3902 where id = ? ;
+  16> end;
+Command succeeded.
+17> exec proc_select_mth3902_by_id, 1;
+START_DATE_EPOCH  CREATE_USER 
+----------------- ------------
+       1698295044 MENNAN      
+
+(Returned 1 rows in 0.02s)
+18> 
+
+
+
+
+
+
+
+
+
+
+
