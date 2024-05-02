@@ -1,2 +1,1 @@
-# voltdb
-VoltDB
+# VoltDB
