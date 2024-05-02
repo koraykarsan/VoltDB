@@ -42,3 +42,9 @@ CREATE PROCEDURE proc_select_mth3902_by_id
 -- Execute the stored procedure
 EXEC proc_select_mth3902_by_id 1;
 
+
+<img width="1221" alt="Screenshot 2024-05-02 at 17 08 27" src="https://github.com/koraykarsan/voltdb/assets/108725475/58d0755c-ddc4-48e3-ac1e-ea805e9a3127">
+
+
+
+
